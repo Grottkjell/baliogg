@@ -1,0 +1,25 @@
+{
+  "name": "baliogg-backend",
+  "version": "1.0.0",
+  "description": "A ReST API communicating with a lowdb instance. The API is built on express.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Grottkjell/baliogg.git"
+  },
+  "keywords": [
+    "express",
+    "lowdb",
+    "ReST",
+    "blogg"
+  ],
+  "author": "Grottkjell",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Grottkjell/baliogg/issues"
+  },
+  "homepage": "https://github.com/Grottkjell/baliogg#readme"
+}
