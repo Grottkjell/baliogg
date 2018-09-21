@@ -4,6 +4,7 @@
   "description": "A ReST API communicating with a lowdb instance. The API is built on express.",
   "main": "index.js",
   "scripts": {
+    "dev": "nodemon --watch src --exec \"babel src --out-dir build && node build/index.js\"",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -21,5 +22,15 @@
   "bugs": {
     "url": "https://github.com/Grottkjell/baliogg/issues"
   },
-  "homepage": "https://github.com/Grottkjell/baliogg#readme"
+  "homepage": "https://github.com/Grottkjell/baliogg#readme",
+  "dependencies": {
+    "express": "^4.16.3",
+    "lowdb": "^1.0.0"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.1.0",
+    "@babel/core": "^7.1.0",
+    "@babel/preset-env": "^7.1.0",
+    "nodemon": "^1.18.4"
+  }
 }
