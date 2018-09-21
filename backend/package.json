@@ -25,6 +25,7 @@
   "homepage": "https://github.com/Grottkjell/baliogg#readme",
   "dependencies": {
     "express": "^4.16.3",
+    "express-basic-auth": "^1.1.5",
     "lowdb": "^1.0.0"
   },
   "devDependencies": {
