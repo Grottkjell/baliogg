@@ -7,10 +7,10 @@ export class Database {
         this._db.defaults({ posts: [], publishers: []}).write();
     }
 
-    addPost({ text, imageBinary, eventDate }) {
+    addPost({ title, text, image, eventDate }) {
         this._db
             .get("posts")
-            .push({ text, imageBinary, eventDate, uploadDate: new Date().toISOString() })
+            .push({ title, text, image, eventDate, uploadDate: new Date().toISOString() })
             .write();
     }
 
