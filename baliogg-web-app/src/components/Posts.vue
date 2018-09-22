@@ -1,5 +1,8 @@
 <template>
   <div>
+    <div v-if="message">
+      {{message}}
+    </div>
     <div class="post" v-for="post in posts" v-bind:key="post.uploadDate">
       <h2>{{post.title}}</h2>
       <img v-if="post.image" v-bind:src="post.image">
@@ -14,30 +17,32 @@ import axios from "axios";
 
 export default {
   name: "Posts",
-  data: function() {
+  data() {
     return {
-      posts: []
+      posts: [],
+      message: ""
     };
   },
-  created: function() {
+  created() {
     this.getPosts();
   },
   methods: {
-    getPosts: function() {
+    getPosts() {
       this.message = "Loading blog posts...";
       axios
         .get("/baliogg/api/post")
         .then(response => {
           this.posts = response.data;
+          this.message = "";
         })
         .catch(() => {
           this.message =
-            "Error loading blog posts..., contact admin if problem persists!";
+            "Error loading blog posts, contact admin if problem persists!";
         });
     }
   },
   filters: {
-    dateFormat: function(date) {
+    dateFormat(date) {
       if (!date) {
         return "";
       }
@@ -48,11 +53,6 @@ export default {
 </script>
 
 <style scoped>
-.post {
-  grid-column-start: 2;
-  grid-column-end: 3;
-  padding: 25px 0;
-}
 .post img {
   max-width: 100%;
 }

@@ -3,17 +3,23 @@
     <div class="banner">
       <h1>Welcome to Baliogg, Emrik and Sannas blog of our trip to Bali, enjoy!</h1>
     </div>
-    <posts class="content"></posts>
+    <div class="content">
+      <div class="middle-column">
+        <router-view></router-view>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
 import Posts from "./components/Posts.vue";
+import CreatePost from "./components/CreatePost.vue";
 
 export default {
   name: "baliogg-app",
   components: {
-    Posts
+    Posts,
+    CreatePost
   }
 };
 </script>
@@ -34,7 +40,7 @@ body {
 }
 .content {
   display: grid;
-  grid-template-columns: 100%;
+  grid-template-columns: 0 100% 0;
   padding-top: 50px;
 }
 
@@ -42,5 +48,11 @@ body {
   .content {
     grid-template-columns: 25% 50% 25%;
   }
+}
+
+.middle-column {
+  grid-column-start: 2;
+  grid-column-end: 3;
+  padding: 25px 0;
 }
 </style>
