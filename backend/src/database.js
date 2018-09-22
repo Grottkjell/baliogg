@@ -4,7 +4,7 @@ const FileSync = require("lowdb/adapters/FileSync")
 export class Database {
     constructor() {
         this._db = low(new FileSync("database.json"));
-        this._db.defaults({ posts: [], user: {}, count: 0 }).write();
+        this._db.defaults({ posts: [], publishers: []}).write();
     }
 
     addPost({ text, imageBinary, eventDate }) {
@@ -16,5 +16,9 @@ export class Database {
 
     getPosts() {
         return this._db.get("posts").value();
+    }
+
+    getPublishers() {
+        return this._db.get("publishers").value();
     }
 }
