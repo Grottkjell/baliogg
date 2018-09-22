@@ -5,14 +5,27 @@ import App from './App.vue'
 import Posts from "./components/Posts.vue";
 import CreatePost from "./components/CreatePost.vue";
 
+import { AuthorizationService } from "./authorization.service";
+
 Vue.config.productionTip = false
 
 Vue.use(VueRouter);
 
 const routes = [
   {
-    path: "/publisher",
-    component: CreatePost
+    path: "/login",
+    component: undefined
+  },
+  {
+    path: "/post/create",
+    component: CreatePost,
+    beforeEnter: async (to, from, next) => {
+      if (await AuthorizationService.isAuthourized()) {
+        next();
+      } else {
+        next({ path: "/login" });
+      }
+    }
   },
   {
     path: "/",
