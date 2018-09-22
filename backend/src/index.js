@@ -11,11 +11,12 @@ import { Buffer } from "buffer";
 import { Database } from "./database";
 
 const app = express();
+const router = express.Router();
 const database = new Database();
 
-app.use(express.json());
+router.use(express.json());
 
-app.post(
+router.post(
     "/post",
     getBasicAuthRequestHandler(),
     (req, res) => {
@@ -31,9 +32,11 @@ app.post(
     }
 );
 
-app.get("/post", (req, res) => {
+router.get("/post", (req, res) => {
     res.send(database.getPosts());
 });
+
+app.use('/baliogg/api', router);
 
 const port = 8000;
 app.listen(port, () => {
