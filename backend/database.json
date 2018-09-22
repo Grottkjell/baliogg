@@ -3,8 +3,32 @@
     {
       "text": "This is the text of a blog post!",
       "uploadDate": "2018-09-21T22:46:50.187Z"
+    },
+    {
+      "text": "Greetings from Postman!",
+      "uploadDate": "2018-09-22T08:08:19.369Z"
+    },
+    {
+      "text": "Greetings from Postman#2!",
+      "uploadDate": "2018-09-22T08:09:55.143Z"
+    },
+    {
+      "text": "Greetings from Postman#3!",
+      "uploadDate": "2018-09-22T08:10:20.208Z"
+    },
+    {
+      "text": "Greetings from Postman#5!",
+      "uploadDate": "2018-09-22T08:43:39.376Z"
+    },
+    {
+      "text": "Greetings from Postman#6!",
+      "uploadDate": "2018-09-22T08:47:36.366Z"
     }
   ],
-  "user": {},
-  "count": 0
+  "publishers": [
+    {
+      "username": "grottkjell",
+      "password": "Z3JvdHRramVsbA=="
+    }
+  ]
 }
