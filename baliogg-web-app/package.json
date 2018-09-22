@@ -1,0 +1,59 @@
+{
+  "name": "baliogg-web-app",
+  "version": "0.1.0",
+  "private": true,
+  "description": "A responsive web application for creating and reading blog posts. The application is built on Vue and communicates with a backend express server that manages the blog post data and users.",
+  "keywords": [
+    "blog",
+    "Vue",
+    "Responsive"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Grottkjell/baliogg.git"
+  },
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Grottkjell/baliogg/issues"
+  },
+  "homepage": "https://github.com/Grottkjell/baliogg#readme",
+  "author": "Grottkjell",
+  "scripts": {
+    "dev": "vue-cli-service serve",
+    "build": "vue-cli-service build",
+    "lint": "vue-cli-service lint"
+  },
+  "dependencies": {
+    "vue": "^2.5.17"
+  },
+  "devDependencies": {
+    "@vue/cli-plugin-babel": "^3.0.3",
+    "@vue/cli-plugin-eslint": "^3.0.3",
+    "@vue/cli-service": "^3.0.3",
+    "vue-template-compiler": "^2.5.17"
+  },
+  "eslintConfig": {
+    "root": true,
+    "env": {
+      "node": true
+    },
+    "extends": [
+      "plugin:vue/essential",
+      "eslint:recommended"
+    ],
+    "rules": {},
+    "parserOptions": {
+      "parser": "babel-eslint"
+    }
+  },
+  "postcss": {
+    "plugins": {
+      "autoprefixer": {}
+    }
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not ie <= 8"
+  ]
+}
