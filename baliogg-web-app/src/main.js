@@ -16,7 +16,7 @@ const routes = [
     path: "/post/create",
     component: CreatePost,
     beforeEnter: async (to, from, next) => {
-      if (await AuthorizationService.isAuthourized()) {
+      if (await AuthorizationService.getOrCreateSession()) {
         next();
       } else {
         next(false);
