@@ -5,7 +5,7 @@ import App from './App.vue'
 import Posts from "./components/Posts.vue";
 import CreatePost from "./components/CreatePost.vue";
 
-import { AuthorizationService } from "./authorization.service";
+import { AuthorizationService } from "./services/authorization.service";
 
 Vue.config.productionTip = false
 

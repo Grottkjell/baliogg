@@ -1,6 +1,7 @@
 <template>
     <div>
         <h2>Create a post</h2>
+        <p>{{message}}</p>
         <form class="post-form">
             <div class="input-control-wrapper">
                 <label for="title">Title</label>
@@ -24,16 +25,27 @@
 </template>
 
 <script>
+import axios from "axios";
+
 export default {
   name: "CreatePost",
   data: () => ({
-      title: "",
-      text: ""
+    title: "",
+    text: "",
+    message: ""
   }),
   methods: {
-      createPost() {
-          console.log(`sup: ${this.title}`);
-      }
+    createPost() {
+      const { title, text } = this;
+      axios
+        .post("/baliogg/api/post", { title, text })
+        .then(() => {
+          this.$router.push("/");
+        })
+        .catch(error => {
+          this.message = error.response.data;
+        });
+    }
   }
 };
 </script>
@@ -41,10 +53,10 @@ export default {
 <style scoped>
 .post-form input,
 .post-form textarea {
-    width: 100%;
+  width: 100%;
 }
 .input-control-wrapper {
-    text-align: left;
-    margin-bottom: 20px;
+  text-align: left;
+  margin-bottom: 20px;
 }
 </style>

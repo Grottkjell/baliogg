@@ -41,9 +41,17 @@ router.get("/post", (req, res) => {
     res.send(database.getPosts());
 });
 app.use('/baliogg/api', router);
+app.use((err, req, res, next) => {
+    /**
+     * TODO: Do some logging to file also.
+     */
+    res.status(500);
+    res.send(err.toString());
+  });
 app.listen(port, () => {
     console.log(`Starting application on port ${port}`);
 });
+
 
 function getBasicAuthRequestHandler(challenge = true) {
     console.log("Authorizing!");
