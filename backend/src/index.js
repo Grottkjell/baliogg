@@ -12,10 +12,16 @@ import { Database } from "./database";
 
 const app = express();
 const router = express.Router();
-const database = new Database();
+const
+    database = new Database(),
+    registeredPublishers = mapPublishers(database.getPublishers()),
+    port = 8000;
 
 router.use(express.json());
-
+router.get("/publisher/session", getBasicAuthRequestHandler(), (req, res) => {
+    console.log("Logged in!");
+    res.send();
+});
 router.post(
     "/post",
     getBasicAuthRequestHandler(),
@@ -31,23 +37,19 @@ router.post(
         }
     }
 );
-
 router.get("/post", (req, res) => {
     res.send(database.getPosts());
 });
-
 app.use('/baliogg/api', router);
-
-const port = 8000;
 app.listen(port, () => {
     console.log(`Starting application on port ${port}`);
 });
 
-function getBasicAuthRequestHandler() {
+function getBasicAuthRequestHandler(challenge = true) {
     console.log("Authorizing!");
     return basicAuth({
-        users: mapPublishers(database.getPublishers()),
-        challenge: true
+        users: registeredPublishers,
+        challenge
     });
 }
 

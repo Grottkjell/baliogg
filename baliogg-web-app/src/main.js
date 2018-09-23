@@ -13,17 +13,13 @@ Vue.use(VueRouter);
 
 const routes = [
   {
-    path: "/login",
-    component: undefined
-  },
-  {
     path: "/post/create",
     component: CreatePost,
     beforeEnter: async (to, from, next) => {
       if (await AuthorizationService.isAuthourized()) {
         next();
       } else {
-        next({ path: "/login" });
+        next(false);
       }
     }
   },
