@@ -11,6 +11,9 @@ module.exports = {
             proxy: {
                 "/baliogg/api": {
                     target: "http://localhost:8000",
+                },
+                "/images": {
+                    target: "http://localhost:8000",
                 }
             }
         },

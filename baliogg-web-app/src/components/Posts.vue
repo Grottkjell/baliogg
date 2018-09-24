@@ -5,7 +5,7 @@
     </div>
     <div class="post" v-for="post in posts" v-bind:key="post.uploadDate">
       <h2>{{post.title}}</h2>
-      <img v-if="post.image" v-bind:src="post.image">
+      <img v-for="(image, key) in post.image" v-bind:key="key" v-bind:src="'images/' + image">
       <p v-if="post.text">{{post.text}}</p>
       <p><i>{{post.uploadDate | dateFormat}}</i></p>
     </div>
@@ -53,7 +53,13 @@ export default {
 </script>
 
 <style scoped>
-.post img {
-  max-width: 100%;
-}
+  .post img {
+    max-width: 100%;
+  }
+  .post:not(:last-of-type) {
+    margin-bottom: 200px;
+  }
+  .post:not(:first-of-type) {
+    border-top: 1px solid gray;
+  }
 </style>
