@@ -39,7 +39,7 @@ export default {
           this.message =
             "Error loading blog posts, contact admin if problem persists!";
         });
-    },
+    }
   },
   computed: {
     postsSortedByDate: function() {
@@ -55,7 +55,7 @@ export default {
         return this.posts;
       }
     }
-  },  
+  },
   filters: {
     dateFormat(date) {
       if (!date) {

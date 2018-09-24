@@ -1,10 +1,13 @@
-const low = require("lowdb")
-const FileSync = require("lowdb/adapters/FileSync")
+import low from "lowdb";
+import FileSync from "lowdb/adapters/FileSync";
+import path from "path";
 
 export class Database {
     constructor() {
-        this._db = low(new FileSync("database.json"));
-        this._db.defaults({ posts: [], publishers: []}).write();
+        const databasePath = path.join(__dirname, "database.json");
+        console.log(`Attempting to read from data from ${databasePath}`);
+        this._db = low(new FileSync(databasePath));
+        this._db.defaults({ posts: [], publishers: [] }).write();
     }
 
     addPost({ title, text, image, eventDate }) {

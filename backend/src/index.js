@@ -17,8 +17,9 @@ const router = express.Router();
 const
     database = new Database(),
     registeredPublishers = mapPublishers(database.getPublishers()),
-    port = 8000,
-    upload = multer({ dest: path.join(__dirname, "images") });
+    port = 80,
+    imageUploadPath = path.join(__dirname, "static/images"),
+    upload = multer({ dest: imageUploadPath });
 
 router.use(express.json());
 router.get("/publisher/session", getBasicAuthRequestHandler(), (req, res) => {
@@ -47,9 +48,9 @@ router.post(
         }
     }
 );
-const staticContentPath = path.join(__dirname, "/images");
+const staticContentPath = path.join(__dirname, "/static");
 console.log(`Service static content at ${staticContentPath}`);
-app.use("/images", express.static(staticContentPath));
+app.use("/", express.static(staticContentPath));
 router.get("/post", (req, res) => {
     res.send(database.getPosts());
 });
