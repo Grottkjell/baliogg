@@ -6,18 +6,21 @@
     <div class="loading-indicator" v-if="loadingPosts">
       <circle10></circle10>
     </div>
-    <div class="post" v-for="post in postsSortedByDate" v-bind:key="post.uploadDate">
-      <h2>{{post.title}}</h2>
-      <img v-for="(image, key) in post.image" v-bind:key="key" v-bind:src="'images/' + image">
-      <p v-if="post.text">{{post.text}}</p>
-      <p><i>{{post.uploadDate | dateFormat}}</i></p>
-    </div>
+    
+    <transition-group name="list">
+      <div class="post" v-for="post in postsSortedByDate" v-bind:key="post.uploadDate">
+        <h2>{{post.title}}</h2>
+        <p><i>{{post.uploadDate | dateFormat}}</i></p>
+        <img v-for="(image, key) in post.image" v-bind:key="key" v-bind:src="'images/' + image">
+        <p v-if="post.text">{{post.text}}</p>
+      </div>
+    </transition-group>
   </div>
 </template>
 
 <script>
 import axios from "axios";
-import {Circle10} from 'vue-loading-spinner'
+import { Circle10 } from "vue-loading-spinner";
 
 export default {
   name: "Posts",
@@ -86,9 +89,9 @@ export default {
 
 <style scoped>
 .loading-indicator {
-  margin-left: 50%
+  margin-left: 50%;
 }
-.post img { 
+.post img {
   max-width: 100%;
 }
 .post:not(:last-of-type) {
@@ -96,5 +99,14 @@ export default {
 }
 .post:not(:first-of-type) {
   border-top: 1px solid gray;
+}
+.post {
+  opacity: 1;
+}
+.list-enter-active {
+  transition: all 2s;
+}
+.list-enter {
+  opacity: 0;
 }
 </style>
