@@ -3,9 +3,6 @@
     <div v-if="message">
       {{message}}
     </div>
-    <div class="loading-indicator" v-if="loadingPosts">
-      <circle10></circle10>
-    </div>
     
     <transition-group name="list">
       <div class="post" v-for="post in postsSortedByDate" v-bind:key="post.uploadDate">
@@ -15,12 +12,18 @@
         <p v-if="post.text">{{post.text}}</p>
       </div>
     </transition-group>
+    <button v-if="!loadingPosts && posts.length < totalNumberOfPosts" v-on:click="getPosts()">Visa fler inlägg</button>
+    <div class="loading-indicator" v-if="loadingPosts">
+      <circle10></circle10>
+    </div>
   </div>
 </template>
 
 <script>
 import axios from "axios";
 import { Circle10 } from "vue-loading-spinner";
+
+const POSTS_PER_PAGE = 3;
 
 export default {
   name: "Posts",
@@ -31,7 +34,9 @@ export default {
     return {
       posts: [],
       message: "",
-      loadingPosts: false
+      loadingPosts: false,
+      totalNumberOfPosts: 0,
+      currentPageNumber: 0
     };
   },
   created() {
@@ -47,10 +52,15 @@ export default {
     getPosts() {
       this.loadingPosts = true;
       axios
-        .get("/baliogg/api/post")
+        .get("/baliogg/api/post", {
+          params: {
+            currentPageNumber: this.currentPageNumber++,
+            postsPerPage: POSTS_PER_PAGE
+          }
+        })
         .then(response => {
-          this.posts = response.data;
-          this.message = "";
+          this.posts = this.posts.concat(response.data.posts);
+          this.totalNumberOfPosts = response.data.totalNumberOfPosts;
         })
         .catch(() => {
           this.message =

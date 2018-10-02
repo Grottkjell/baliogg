@@ -52,7 +52,16 @@ const staticContentPath = path.join(__dirname, "/static");
 console.log(`Service static content at ${staticContentPath}`);
 app.use("/", express.static(staticContentPath));
 router.get("/post", (req, res) => {
-    res.send(database.getPosts());
+    const { currentPageNumber, postsPerPage } = req.query;
+    const
+        begin = +currentPageNumber * +postsPerPage,
+        end = (+currentPageNumber + 1) * +postsPerPage,
+        posts = database.getPosts().sort(postUploadDateComparator),
+        postsToReturn = begin < posts.length ? posts.slice(begin, end) : posts;
+    res.send({
+        totalNumberOfPosts: posts.length,
+        posts: postsToReturn
+    });
 });
 app.use("/baliogg/api", router);
 app.use((err, req, res, next) => {
@@ -79,4 +88,12 @@ function mapPublishers(publishers) {
         accumulatedPublishers[currentPublisher.username] = Buffer.from(currentPublisher.password, "base64").toString();
         return accumulatedPublishers;
     }, {});
+}
+
+function postUploadDateComparator(p1, p2) {
+    if (p1.uploadDate && p2.uploadDate) {
+        return p1.uploadDate > p2.uploadDate ? -1 : 1;
+    } else {
+        return 0;
+    }
 }
