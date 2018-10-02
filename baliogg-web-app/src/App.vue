@@ -39,18 +39,22 @@ body {
   padding: 10px 0;
 }
 .content {
+  display: -ms-grid;
   display: grid;
+  -ms-grid-columns: 0 100% 0;
   grid-template-columns: 0 100% 0;
   padding-top: 50px;
 }
 
 @media only screen and (min-width: 800px) {
   .content {
+    -ms-grid-columns: 25% 50% 25%;
     grid-template-columns: 25% 50% 25%;
   }
 }
 
 .middle-column {
+  -ms-grid-column: 2;
   grid-column-start: 2;
   grid-column-end: 3;
   padding: 25px 0;
