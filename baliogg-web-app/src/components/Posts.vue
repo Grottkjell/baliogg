@@ -77,7 +77,7 @@ export default {
         spinner.style.transform = "scale(1)";
         spinner.style.background = "white";
         spinner.style["border-radius"] = "50%";
-        spinner.style["boxShadow"] = "0 0 10px 2px";
+        spinner.style["boxShadow"] = "1px 0 8px 0";
       });
     }
   },
