@@ -1,7 +1,7 @@
 <template>
   <div id="baliogg-app">
     <div class="banner">
-      <h1>Welcome to Baliogg, Emrik and Sannas blog of our trip to Bali, enjoy!</h1>
+      <h1>Välkommen till Baliogg, Emrik och Sannas blogg av vår resa till Bali!</h1>
     </div>
     <div class="content">
       <div class="middle-column">
